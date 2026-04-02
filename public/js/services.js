@@ -47,7 +47,7 @@ async function renderServices() {
                 <button class="btn btn-sm btn-outline-primary me-1" onclick="showServiceForm(${s.id})">
                   <i class="bi bi-pencil"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-danger" onclick="deleteService(${s.id}, '${s.name.replace(/'/g, "\\'")}')">
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteService(${s.id}, ${JSON.stringify(s.name)})">
                   <i class="bi bi-trash"></i>
                 </button>
               </td>

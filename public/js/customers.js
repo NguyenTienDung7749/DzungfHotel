@@ -49,13 +49,13 @@ async function renderCustomers(search) {
               <td><span class="badge bg-light text-dark border">${c.nationality}</span></td>
               <td class="small text-muted">${c.created_at ? c.created_at.split(' ')[0] : ''}</td>
               <td>
-                <button class="btn btn-sm btn-outline-info me-1" onclick="showCustomerHistory(${c.id}, '${c.full_name.replace(/'/g, "\\'")}')">
+                <button class="btn btn-sm btn-outline-info me-1" onclick="showCustomerHistory(${c.id}, ${JSON.stringify(c.full_name)})">
                   <i class="bi bi-clock-history"></i>
                 </button>
                 <button class="btn btn-sm btn-outline-primary me-1" onclick="showCustomerForm(${c.id})">
                   <i class="bi bi-pencil"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-danger" onclick="deleteCustomer(${c.id}, '${c.full_name.replace(/'/g, "\\'")}')">
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteCustomer(${c.id}, ${JSON.stringify(c.full_name)})">
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
