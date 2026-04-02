@@ -103,6 +103,7 @@ router.post('/types', (req, res) => {
 router.put('/types/:id', (req, res) => {
   const db = getDb();
   const { name, description, price_per_night, capacity } = req.body;
+  if (!name || !price_per_night) return res.status(400).json({ error: 'Thiếu thông tin bắt buộc' });
   try {
     db.prepare(
       'UPDATE room_types SET name=?, description=?, price_per_night=?, capacity=? WHERE id=?'

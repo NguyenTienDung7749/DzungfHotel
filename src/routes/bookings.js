@@ -119,7 +119,7 @@ router.post('/:id/checkin', (req, res) => {
   if (booking.status !== 'confirmed' && booking.status !== 'pending') {
     return res.status(409).json({ error: 'Không thể check-in đặt phòng này' });
   }
-  const now = new Date().toLocaleString('vi-VN');
+  const now = new Date().toISOString();
   db.prepare("UPDATE bookings SET status='checked_in', actual_check_in=? WHERE id=?").run(now, req.params.id);
   db.prepare("UPDATE rooms SET status='occupied' WHERE id=?").run(booking.room_id);
   res.json({ message: 'Check-in thành công' });
@@ -145,7 +145,7 @@ router.post('/:id/checkout', (req, res) => {
   const roomCost = nights * room.price_per_night;
   const totalAmount = roomCost + serviceCost;
 
-  const now = new Date().toLocaleString('vi-VN');
+  const now = new Date().toISOString();
   db.prepare(`
     UPDATE bookings SET status='checked_out', actual_check_out=?, total_amount=?, payment_status='paid', paid_amount=? WHERE id=?
   `).run(now, totalAmount, totalAmount, req.params.id);

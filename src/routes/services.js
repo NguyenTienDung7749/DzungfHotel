@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const db = getDb();
   const { name, category, unit_price, unit } = req.body;
+  if (!name || !category || !unit_price) return res.status(400).json({ error: 'Thiếu thông tin bắt buộc' });
   db.prepare('UPDATE services SET name=?, category=?, unit_price=?, unit=? WHERE id=?')
     .run(name, category, unit_price, unit, req.params.id);
   res.json({ message: 'Cập nhật dịch vụ thành công' });
