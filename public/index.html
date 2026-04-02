@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DzungfHotel - Hệ thống quản lý khách sạn</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="/vendor/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar d-flex flex-column">
+    <div class="sidebar-brand d-flex align-items-center px-3 py-3">
+      <i class="bi bi-building me-2 fs-4"></i>
+      <span class="fs-5 fw-bold">DzungfHotel</span>
+    </div>
+    <hr class="text-white my-0" />
+    <nav class="nav flex-column px-2 py-2 flex-grow-1">
+      <a class="nav-link sidebar-link active" href="#" data-page="dashboard">
+        <i class="bi bi-speedometer2 me-2"></i> Tổng quan
+      </a>
+      <a class="nav-link sidebar-link" href="#" data-page="rooms">
+        <i class="bi bi-door-open me-2"></i> Quản lý phòng
+      </a>
+      <a class="nav-link sidebar-link" href="#" data-page="customers">
+        <i class="bi bi-people me-2"></i> Khách hàng
+      </a>
+      <a class="nav-link sidebar-link" href="#" data-page="bookings">
+        <i class="bi bi-calendar-check me-2"></i> Đặt phòng
+      </a>
+      <a class="nav-link sidebar-link" href="#" data-page="checkin">
+        <i class="bi bi-box-arrow-in-right me-2"></i> Check-in / Out
+      </a>
+      <a class="nav-link sidebar-link" href="#" data-page="services">
+        <i class="bi bi-stars me-2"></i> Dịch vụ
+      </a>
+    </nav>
+    <div class="px-3 py-2 text-white-50 small">
+      <i class="bi bi-person-circle me-1"></i> Admin
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="main-content" class="main-content">
+    <!-- Top bar -->
+    <div class="topbar d-flex align-items-center px-4">
+      <button class="btn btn-sm btn-outline-secondary me-3 d-md-none" id="toggle-sidebar">
+        <i class="bi bi-list"></i>
+      </button>
+      <h5 id="page-title" class="mb-0 fw-semibold">Tổng quan</h5>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <span class="badge bg-success" id="current-date"></span>
+      </div>
+    </div>
+
+    <!-- Pages -->
+    <div class="content-area px-4 py-3">
+      <div id="page-dashboard" class="page-section"></div>
+      <div id="page-rooms" class="page-section d-none"></div>
+      <div id="page-customers" class="page-section d-none"></div>
+      <div id="page-bookings" class="page-section d-none"></div>
+      <div id="page-checkin" class="page-section d-none"></div>
+      <div id="page-services" class="page-section d-none"></div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999"></div>
+
+  <!-- Modals placeholder -->
+  <div id="modal-container"></div>
+
+  <script src="/vendor/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/rooms.js"></script>
+  <script src="/js/customers.js"></script>
+  <script src="/js/bookings.js"></script>
+  <script src="/js/checkin.js"></script>
+  <script src="/js/services.js"></script>
+</body>
+</html>
