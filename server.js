@@ -25,8 +25,15 @@ app.use('/api/bookings', require('./src/routes/bookings'));
 app.use('/api/services', require('./src/routes/services'));
 app.use('/api/dashboard', require('./src/routes/dashboard'));
 
+const pageLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Serve frontend
-app.get('/{*path}', (req, res) => {
+app.get('/{*path}', pageLimit, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
