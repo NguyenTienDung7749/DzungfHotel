@@ -491,6 +491,11 @@
 }
 
 /********** DzungfHotel Custom CSS **********/
+.app-shell {
+    width: 100%;
+    max-width: none;
+}
+
 .btn {
     text-transform: none;
 }
@@ -761,6 +766,20 @@
 
 .footer .btn.btn-link {
     text-transform: none;
+}
+
+@media (min-width: 1400px) {
+    .app-container-wide .container,
+    .app-container-wide .container-xxl {
+        max-width: 1480px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .app-container-wide .container,
+    .app-container-wide .container-xxl {
+        max-width: 1600px;
+    }
 }
 
 @media (max-width: 991.98px) {
