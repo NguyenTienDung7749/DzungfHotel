@@ -24,10 +24,10 @@ if ($result = $db->query("SELECT COUNT(*) AS total FROM bookings WHERE payment_s
     $summary['paid'] = (int) ($result->fetch_assoc()['total'] ?? 0);
 }
 
-$page_title = 'DzungfHotel | Giới thiệu';
+$page_title = 'DzungfHotel | Về chúng tôi';
 $active_page = 'about';
-$page_heading = 'Giới thiệu';
-$page_eyebrow = 'Về DzungfHotel';
+$page_heading = 'Về chúng tôi';
+$page_eyebrow = 'DzungfHotel';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -37,14 +37,14 @@ require_once __DIR__ . '/includes/header.php';
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
                 <h6 class="section-title text-start text-primary text-uppercase">DzungfHotel</h6>
-                <h1 class="mb-4">Không gian lưu trú tiện nghi, quy trình đặt phòng rõ ràng</h1>
-                <p class="mb-4">DzungfHotel được xây dựng theo định hướng website khách sạn hiện đại, giúp khách hàng dễ dàng tìm phòng, xem chi tiết, đặt phòng và theo dõi tình trạng booking trên cùng một nền tảng.</p>
+                <h1 class="mb-4">Điểm dừng chân tiện nghi cho những chuyến đi đáng nhớ</h1>
+                <p class="mb-4">DzungfHotel là lựa chọn lưu trú phù hợp cho du khách tìm kiếm không gian nghỉ ngơi hiện đại, thoải mái và thuận tiện. Chúng tôi chú trọng trải nghiệm xem phòng rõ ràng, đặt phòng nhanh chóng và dịch vụ thân thiện cho cả kỳ nghỉ lẫn chuyến công tác.</p>
                 <ul class="list-check mb-4">
-                    <li><i class="fa fa-check-circle"></i>Hỗ trợ đăng ký, đăng nhập, đăng xuất và xem hồ sơ cá nhân.</li>
-                    <li><i class="fa fa-check-circle"></i>Cho phép xem danh sách phòng, chi tiết phòng, đặt phòng và xem trang xác nhận.</li>
-                    <li><i class="fa fa-check-circle"></i>Có trang admin để xem toàn bộ danh sách booking và trạng thái thanh toán.</li>
+                    <li><i class="fa fa-check-circle"></i>Dễ dàng khám phá các hạng phòng, tiện nghi nổi bật và mức giá tham khảo rõ ràng.</li>
+                    <li><i class="fa fa-check-circle"></i>Gửi yêu cầu đặt phòng thuận tiện ngay trên website, phù hợp cho lưu trú ngắn ngày lẫn dài ngày.</li>
+                    <li><i class="fa fa-check-circle"></i>Không gian phù hợp cho khách du lịch, gia đình và khách công tác cần sự linh hoạt.</li>
                 </ul>
-                <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-3 px-5">Khám phá phòng</a>
+                <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-3 px-5">Khám phá hạng phòng</a>
             </div>
             <div class="col-lg-6">
                 <div class="row g-3">
@@ -73,21 +73,21 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="stat-box text-center h-100">
                     <div class="icon-circle mx-auto mb-3"><i class="fa fa-door-open"></i></div>
                     <h3 class="mb-2"><?= $summary['rooms'] ?></h3>
-                    <p class="mb-0">Phòng đang mở bán</p>
+                    <p class="mb-0">Hạng phòng đang mở đặt</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="stat-box text-center h-100">
                     <div class="icon-circle mx-auto mb-3"><i class="fa fa-hourglass-half"></i></div>
                     <h3 class="mb-2"><?= $summary['pending'] ?></h3>
-                    <p class="mb-0">Booking đang chờ xử lý</p>
+                    <p class="mb-0">Yêu cầu đang tiếp nhận</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="stat-box text-center h-100">
                     <div class="icon-circle mx-auto mb-3"><i class="fa fa-wallet"></i></div>
                     <h3 class="mb-2"><?= $summary['paid'] ?></h3>
-                    <p class="mb-0">Booking đã thanh toán</p>
+                    <p class="mb-0">Lượt đặt đã hoàn tất</p>
                 </div>
             </div>
         </div>
@@ -99,19 +99,19 @@ require_once __DIR__ . '/includes/header.php';
         <div class="row g-5 align-items-center">
             <div class="col-lg-7">
                 <div class="info-card h-100">
-                    <h3 class="mb-4">Định hướng vận hành</h3>
-                    <p class="mb-3">Khách hàng có thể bắt đầu từ trang chủ, mở danh sách phòng, chọn một phòng phù hợp, thực hiện booking và quay lại hồ sơ để xem lịch sử đặt phòng của riêng mình.</p>
-                    <p class="mb-0">Giao diện hiển thị hoàn toàn bằng tiếng Việt, thông tin phòng rõ ràng và tập trung vào những chức năng cần thiết cho một hệ thống đặt phòng khách sạn.</p>
+                    <h3 class="mb-4">Trải nghiệm nổi bật tại DzungfHotel</h3>
+                    <p class="mb-3">Từ trang chủ, bạn có thể nhanh chóng khám phá các hạng phòng, so sánh thông tin lưu trú và chọn lựa không gian phù hợp với lịch trình của mình.</p>
+                    <p class="mb-0">Chúng tôi ưu tiên sự rõ ràng trong thông tin, thao tác đặt phòng thuận tiện và cảm giác an tâm trước khi bạn bắt đầu hành trình lưu trú tại DzungfHotel.</p>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="summary-card h-100">
-                    <h4 class="mb-4">Chức năng chính của hệ thống</h4>
+                    <h4 class="mb-4">Lý do khách hàng lựa chọn DzungfHotel</h4>
                     <ul class="list-check mb-0">
-                        <li><i class="fa fa-check-circle"></i>Xác thực người dùng: đăng ký, đăng nhập, đăng xuất.</li>
-                        <li><i class="fa fa-check-circle"></i>Quản lý đặt phòng: xem phòng, chi tiết phòng, đặt phòng, xác nhận.</li>
-                        <li><i class="fa fa-check-circle"></i>Báo cáo quản trị: xem bảng booking tổng hợp.</li>
-                        <li><i class="fa fa-check-circle"></i>Thanh toán mô phỏng: theo dõi trạng thái thanh toán ngay trong hệ thống.</li>
+                        <li><i class="fa fa-check-circle"></i>Không gian lưu trú hiện đại, phù hợp cho nghỉ dưỡng, du lịch và công tác.</li>
+                        <li><i class="fa fa-check-circle"></i>Thông tin phòng rõ ràng với tiện nghi, sức chứa và mức giá tham khảo minh bạch.</li>
+                        <li><i class="fa fa-check-circle"></i>Quy trình gửi yêu cầu đặt phòng gọn gàng, dễ thao tác trên cả máy tính và điện thoại.</li>
+                        <li><i class="fa fa-check-circle"></i>Dễ dàng theo dõi thông tin lưu trú và xác nhận cần thiết trong tài khoản cá nhân.</li>
                     </ul>
                 </div>
             </div>

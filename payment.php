@@ -11,7 +11,7 @@ $userId = current_user_id();
 $bookingId = (int) ($_POST['booking_id'] ?? $_GET['id'] ?? 0);
 
 if ($bookingId <= 0) {
-    set_flash('danger', 'Booking không hợp lệ.');
+    set_flash('danger', 'Mã đặt phòng không hợp lệ.');
     redirect('profile.php');
 }
 
@@ -42,7 +42,7 @@ $loadBooking = static function (mysqli $db, int $bookingId, int $userId): ?array
 $booking = $loadBooking($db, $bookingId, $userId);
 
 if (!$booking) {
-    set_flash('danger', 'Bạn không có quyền thanh toán booking này.');
+    set_flash('danger', 'Bạn không có quyền thanh toán cho đặt phòng này.');
     redirect('profile.php');
 }
 
@@ -51,9 +51,9 @@ $paymentStatus = (string) $booking['payment_status'];
 
 if ($bookingStatus !== 'Confirmed' && $paymentStatus !== 'Paid') {
     if ($bookingStatus === 'OutOfStock') {
-        set_flash('danger', 'Booking này không thể thanh toán vì khách sạn đã báo hết phòng.');
+        set_flash('danger', 'Đặt phòng này không thể thanh toán vì khách sạn đã báo hết phòng.');
     } else {
-        set_flash('warning', 'Booking này đang chờ khách sạn xác nhận, chưa thể thanh toán.');
+        set_flash('warning', 'Đặt phòng này đang chờ xác nhận nên chưa thể thanh toán.');
     }
 
     redirect('booking-confirm.php?id=' . $bookingId);
@@ -61,7 +61,7 @@ if ($bookingStatus !== 'Confirmed' && $paymentStatus !== 'Paid') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action_type'] ?? '') === 'complete_qr_payment') {
     if ((string) $booking['booking_status'] !== 'Confirmed') {
-        set_flash('warning', 'Chỉ booking đã xác nhận mới được thanh toán.');
+        set_flash('warning', 'Chỉ những đặt phòng đã được xác nhận mới có thể thanh toán.');
         redirect('booking-confirm.php?id=' . $bookingId);
     }
 
@@ -114,25 +114,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action_type'] ?? 
             $updateBooking = $db->prepare("UPDATE bookings SET payment_status = 'Paid' WHERE id = ? AND user_id = ?");
 
             if (!$updateBooking) {
-                throw new RuntimeException('Không thể cập nhật trạng thái booking.');
+                throw new RuntimeException('Không thể cập nhật trạng thái đặt phòng.');
             }
 
             $updateBooking->bind_param('ii', $bookingId, $userId);
 
             if (!$updateBooking->execute()) {
-                throw new RuntimeException('Không thể cập nhật trạng thái booking.');
+                throw new RuntimeException('Không thể cập nhật trạng thái đặt phòng.');
             }
 
             $updateBooking->close();
             $db->commit();
 
-            set_flash('success', 'Thanh toán thành công cho booking #' . $bookingId . '.');
+            set_flash('success', 'Thanh toán thành công cho mã đặt phòng #' . $bookingId . '.');
         } catch (Throwable $exception) {
             $db->rollback();
             set_flash('danger', $exception->getMessage());
         }
     } else {
-        set_flash('info', 'Booking này đã được thanh toán trước đó.');
+        set_flash('info', 'Đặt phòng này đã được thanh toán trước đó.');
     }
 
     redirect('booking-confirm.php?id=' . $bookingId);
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string) ($_POST['action_type'] ?? 
 $booking = $loadBooking($db, $bookingId, $userId);
 
 if (!$booking) {
-    set_flash('danger', 'Không thể tải lại thông tin booking.');
+    set_flash('danger', 'Không thể tải lại thông tin đặt phòng.');
     redirect('profile.php');
 }
 
@@ -150,10 +150,10 @@ $checkOutDate = new DateTimeImmutable((string) $booking['check_out']);
 $nights = (int) $checkInDate->diff($checkOutDate)->days;
 $isPaid = (string) $booking['payment_status'] === 'Paid';
 
-$page_title = 'DzungfHotel | Thanh toán QR';
+$page_title = 'DzungfHotel | Thanh toán xác nhận lưu trú';
 $active_page = 'booking-confirm';
 $page_heading = 'Thanh toán QR';
-$page_eyebrow = 'Hoàn tất thanh toán';
+$page_eyebrow = 'Xác nhận lưu trú';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -165,8 +165,8 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="form-card h-100">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
                         <div>
-                            <h3 class="mb-2">Thanh toán booking #<?= e((string) $booking['id']) ?></h3>
-                            <p class="mb-0 text-muted">Quét mã QR để hoàn tất thanh toán cho phòng <?= e((string) $booking['room_name']) ?>.</p>
+                            <h3 class="mb-2">Hoàn tất thanh toán cho mã đặt phòng #<?= e((string) $booking['id']) ?></h3>
+                            <p class="mb-0 text-muted">Quét mã QR để xác nhận thanh toán cho phòng <?= e((string) $booking['room_name']) ?>.</p>
                         </div>
                         <span class="badge <?= e(payment_badge_class((string) $booking['payment_status'])) ?> status-badge mt-3 mt-md-0">
                             <?= e(payment_status_label((string) $booking['payment_status'])) ?>
@@ -175,13 +175,13 @@ require_once __DIR__ . '/includes/header.php';
 
                     <?php if ($isPaid): ?>
                         <div class="alert alert-success">
-                            Booking này đã được cập nhật thanh toán thành công. Bạn có thể quay lại trang xác nhận để xem chi tiết.
+                            Khoản thanh toán cho đặt phòng này đã được ghi nhận thành công. Bạn có thể quay lại trang xác nhận để xem chi tiết.
                         </div>
                     <?php else: ?>
                         <div class="payment-qr-card">
                             <img class="payment-qr-image" src="<?= e(asset('img/payment-qr-vcb.svg')) ?>" alt="Mã QR thanh toán Vietcombank">
                             <div class="payment-status-box">
-                                <span class="countdown-badge">Tự động xác nhận sau <strong id="paymentSeconds">10</strong> giây</span>
+                                <span class="countdown-badge">Tự động cập nhật sau <strong id="paymentSeconds">10</strong> giây</span>
                                 <div class="progress payment-progress mt-3">
                                     <div
                                         id="paymentProgressBar"
@@ -193,7 +193,7 @@ require_once __DIR__ . '/includes/header.php';
                                         aria-valuenow="0"
                                     ></div>
                                 </div>
-                                <p class="text-muted mt-3 mb-0">Hệ thống sẽ tự cập nhật trạng thái thanh toán sau vài giây. Nếu khách thanh toán tiền mặt tại quầy, admin cũng có thể xác nhận thủ công.</p>
+                                <p class="text-muted mt-3 mb-0">Trạng thái thanh toán sẽ được cập nhật tự động sau ít giây. Nếu cần hỗ trợ thêm, bạn có thể liên hệ trực tiếp với DzungfHotel để được hướng dẫn.</p>
                             </div>
                         </div>
 
@@ -201,7 +201,7 @@ require_once __DIR__ . '/includes/header.php';
                             <input type="hidden" name="booking_id" value="<?= e((string) $bookingId) ?>">
                             <input type="hidden" name="action_type" value="complete_qr_payment">
                             <noscript>
-                                <button type="submit" class="btn btn-primary w-100 py-3">Xác nhận đã chuyển khoản</button>
+                                <button type="submit" class="btn btn-primary w-100 py-3">Tôi đã hoàn tất chuyển khoản</button>
                             </noscript>
                         </form>
                     <?php endif; ?>
@@ -209,7 +209,7 @@ require_once __DIR__ . '/includes/header.php';
             </div>
             <div class="col-lg-5">
                 <div class="summary-card mb-4">
-                    <h4 class="mb-3">Tóm tắt booking</h4>
+                    <h4 class="mb-3">Thông tin lưu trú</h4>
                     <ul class="list-check mb-0">
                         <li><i class="fa fa-check-circle"></i>Phòng: <?= e((string) $booking['room_name']) ?> (<?= e((string) $booking['room_type']) ?>)</li>
                         <li><i class="fa fa-check-circle"></i>Địa điểm: <?= e((string) $booking['location']) ?></li>
@@ -221,13 +221,13 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
 
                 <div class="summary-card">
-                    <h5 class="mb-3">Lựa chọn khác</h5>
+                    <h5 class="mb-3">Hỗ trợ thêm</h5>
                     <ul class="list-check mb-4">
-                        <li><i class="fa fa-check-circle"></i>Bạn có thể quay lại hồ sơ để theo dõi lịch sử booking.</li>
-                        <li><i class="fa fa-check-circle"></i>Nếu khách đến trực tiếp hoặc đặt qua điện thoại, khách sạn có thể xác nhận tiền mặt tại quầy.</li>
+                        <li><i class="fa fa-check-circle"></i>Bạn có thể quay lại tài khoản để theo dõi trạng thái đặt phòng và thanh toán.</li>
+                        <li><i class="fa fa-check-circle"></i>Nếu cần hỗ trợ thêm trước khi lưu trú, vui lòng liên hệ hotline của DzungfHotel.</li>
                     </ul>
-                    <a href="<?= e(url('booking-confirm.php?id=' . $bookingId)) ?>" class="btn btn-primary w-100 py-3 mb-3">Quay lại xác nhận booking</a>
-                    <a href="<?= e(url('profile.php')) ?>" class="btn btn-outline-dark w-100 py-3">Xem hồ sơ cá nhân</a>
+                    <a href="<?= e(url('booking-confirm.php?id=' . $bookingId)) ?>" class="btn btn-primary w-100 py-3 mb-3">Quay lại xác nhận đặt phòng</a>
+                    <a href="<?= e(url('profile.php')) ?>" class="btn btn-outline-dark w-100 py-3">Xem tài khoản của tôi</a>
                 </div>
             </div>
         </div>

@@ -47,10 +47,10 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3 hero-caption">
                         <h5 class="section-title text-white text-uppercase mb-3 animated slideInDown">DzungfHotel</h5>
-                        <h1 class="display-3 text-white mb-4 animated slideInDown">Hệ thống đặt phòng khách sạn trực tuyến</h1>
-                        <p class="fs-5 text-white mb-4 animated slideInDown">Đặt phòng nhanh chóng, thuận tiện và an toàn cho mọi chuyến đi của bạn.</p>
-                        <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem danh sách phòng</a>
-                        <a href="<?= e(url('booking.php')) ?>" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Đặt phòng ngay</a>
+                        <h1 class="display-3 text-white mb-4 animated slideInDown">Không gian lưu trú tiện nghi cho kỳ nghỉ trọn vẹn</h1>
+                        <p class="fs-5 text-white mb-4 animated slideInDown">Khám phá các hạng phòng hiện đại, vị trí thuận tiện và trải nghiệm đặt phòng nhanh chóng ngay trên website của khách sạn.</p>
+                        <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem các hạng phòng</a>
+                        <a href="<?= e(url('rooms.php')) ?>" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Đặt phòng ngay</a>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,11 @@ require_once __DIR__ . '/includes/header.php';
                 <img class="w-100" src="<?= e(asset('img/carousel-2.jpg')) ?>" alt="Đặt phòng">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3 hero-caption">
-                        <h5 class="section-title text-white text-uppercase mb-3 animated slideInDown">Không gian nghỉ dưỡng hiện đại</h5>
-                        <h1 class="display-3 text-white mb-4 animated slideInDown">Lựa chọn lưu trú phù hợp cho gia đình và doanh nhân</h1>
-                        <p class="fs-5 text-white mb-4 animated slideInDown">Khám phá những hạng phòng nổi bật với vị trí đẹp, tiện nghi đầy đủ và quy trình đặt phòng rõ ràng.</p>
-                        <a href="<?= e(url('register.php')) ?>" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Tạo tài khoản</a>
-                        <a href="<?= e(url('rooms.php')) ?>" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Xem phòng</a>
+                        <h5 class="section-title text-white text-uppercase mb-3 animated slideInDown">Kỳ nghỉ thư thái giữa miền Trung</h5>
+                        <h1 class="display-3 text-white mb-4 animated slideInDown">Lựa chọn lưu trú phù hợp cho cả du lịch và công tác</h1>
+                        <p class="fs-5 text-white mb-4 animated slideInDown">Tận hưởng không gian nghỉ ngơi sạch đẹp, tiện nghi và dễ dàng chọn phòng phù hợp với lịch trình của bạn.</p>
+                        <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Khám phá phòng nghỉ</a>
+                        <a href="<?= e(url('contact.php')) ?>" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên hệ tư vấn</a>
                     </div>
                 </div>
             </div>
@@ -115,14 +115,14 @@ require_once __DIR__ . '/includes/header.php';
             <div class="col-lg-6">
                 <h6 class="section-title text-start text-primary text-uppercase">Về chúng tôi</h6>
                 <h1 class="mb-4">Chào mừng đến với <span class="text-primary text-uppercase">DzungfHotel</span></h1>
-                <p class="mb-4">DzungfHotel là hệ thống đặt phòng khách sạn trực tuyến bằng PHP và MySQL. Website tập trung vào trải nghiệm đặt phòng rõ ràng, giao diện sang trọng và quy trình sử dụng đơn giản.</p>
+                <p class="mb-4">DzungfHotel mang đến trải nghiệm lưu trú tiện nghi, hiện đại và thuận tiện cho du khách. Website hỗ trợ bạn dễ dàng tìm hạng phòng phù hợp, xem thông tin chi tiết và gửi yêu cầu đặt phòng nhanh chóng cho mỗi chuyến đi.</p>
                 <div class="row g-3 pb-4">
                     <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                         <div class="border rounded p-1">
                             <div class="border rounded text-center p-4">
                                 <i class="fa fa-hotel fa-2x text-primary mb-2"></i>
                                 <h2 class="mb-1" data-toggle="counter-up"><?= $stats['rooms'] ?></h2>
-                                <p class="mb-0">Phòng sẵn sàng</p>
+                                <p class="mb-0">Phòng đang mở đặt</p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="border rounded text-center p-4">
                                 <i class="fa fa-user-check fa-2x text-primary mb-2"></i>
                                 <h2 class="mb-1" data-toggle="counter-up"><?= $stats['customers'] ?></h2>
-                                <p class="mb-0">Khách hàng</p>
+                                <p class="mb-0">Lượt khách</p>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="border rounded text-center p-4">
                                 <i class="fa fa-calendar-check fa-2x text-primary mb-2"></i>
                                 <h2 class="mb-1" data-toggle="counter-up"><?= $stats['bookings'] ?></h2>
-                                <p class="mb-0">Booking hiện có</p>
+                                <p class="mb-0">Lượt đặt phòng</p>
                             </div>
                         </div>
                     </div>
@@ -199,8 +199,8 @@ require_once __DIR__ . '/includes/header.php';
                             </div>
                             <p class="text-body mb-3"><?= e(function_exists('mb_strimwidth') ? mb_strimwidth((string) $room['description'], 0, 110, '...') : substr((string) $room['description'], 0, 110) . '...') ?></p>
                             <div class="d-flex justify-content-between">
-                                <a class="btn btn-sm btn-primary rounded py-2 px-4" href="<?= e(url('room-details.php?id=' . (int) $room['id'])) ?>">Chi tiết</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e(url('booking.php?room_id=' . (int) $room['id'])) ?>">Đặt ngay</a>
+                                <a class="btn btn-sm btn-primary rounded py-2 px-4" href="<?= e(url('room-details.php?id=' . (int) $room['id'])) ?>">Xem chi tiết</a>
+                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e(url('booking.php?room_id=' . (int) $room['id'])) ?>">Chọn phòng này</a>
                             </div>
                         </div>
                     </div>
@@ -221,33 +221,33 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="service-item rounded">
                     <div class="service-icon bg-transparent border rounded p-1">
                         <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                            <i class="fa fa-user-shield fa-2x text-primary"></i>
+                            <i class="fa fa-map-marker-alt fa-2x text-primary"></i>
                         </div>
                     </div>
-                    <h5 class="mb-3">Đăng nhập đơn giản</h5>
-                    <p class="text-body mb-0">Người dùng có thể đăng ký, đăng nhập và xem thông tin tài khoản nhanh để bắt đầu đặt phòng ngay.</p>
+                    <h5 class="mb-3">Vị trí thuận tiện</h5>
+                    <p class="text-body mb-0">Dễ dàng di chuyển đến trung tâm, khu mua sắm và các địa điểm tham quan nổi bật trong khu vực.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item rounded">
                     <div class="service-icon bg-transparent border rounded p-1">
                         <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                            <i class="fa fa-calendar-check fa-2x text-primary"></i>
+                            <i class="fa fa-bed fa-2x text-primary"></i>
                         </div>
                     </div>
-                    <h5 class="mb-3">Đặt phòng rõ ràng</h5>
-                    <p class="text-body mb-0">Luồng đặt phòng có tính tổng tiền theo số đêm, hiển thị xác nhận booking và lịch sử đặt phòng của chính người dùng.</p>
+                    <h5 class="mb-3">Phòng nghỉ tiện nghi</h5>
+                    <p class="text-body mb-0">Không gian lưu trú sạch sẽ, hiện đại và thoải mái, phù hợp cho cả khách du lịch lẫn khách công tác.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
                     <div class="service-icon bg-transparent border rounded p-1">
                         <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                            <i class="fa fa-chart-bar fa-2x text-primary"></i>
+                            <i class="fa fa-calendar-check fa-2x text-primary"></i>
                         </div>
                     </div>
-                    <h5 class="mb-3">Báo cáo admin</h5>
-                    <p class="text-body mb-0">Quản trị viên xem được toàn bộ danh sách booking, trạng thái đặt phòng và trạng thái thanh toán trong một bảng tổng hợp.</p>
+                    <h5 class="mb-3">Đặt phòng nhanh chóng</h5>
+                    <p class="text-body mb-0">Chọn phòng, chọn ngày lưu trú và gửi yêu cầu đặt phòng dễ dàng ngay trên website của khách sạn.</p>
                 </div>
             </div>
         </div>
@@ -258,12 +258,12 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-8">
-                <h2 class="text-white mb-3">Bắt đầu đặt phòng chỉ với vài bước</h2>
-                <p class="text-white mb-0">Tạo tài khoản, chọn phòng phù hợp, hoàn tất booking và theo dõi lịch sử đặt phòng ngay trên cùng một hệ thống.</p>
+                <h2 class="text-white mb-3">Đặt phòng trực tuyến nhanh chóng và thuận tiện</h2>
+                <p class="text-white mb-0">Chọn phòng phù hợp, gửi yêu cầu đặt phòng và nhận thông tin xác nhận ngay trên website của khách sạn.</p>
             </div>
             <div class="col-lg-4 text-lg-end">
-                <a href="<?= e(url('login.php')) ?>" class="btn btn-primary py-3 px-5 me-2">Đăng nhập</a>
-                <a href="<?= e(url('rooms.php')) ?>" class="btn btn-light py-3 px-5">Xem phòng</a>
+                <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-3 px-5 me-2">Đặt phòng ngay</a>
+                <a href="<?= e(url('rooms.php')) ?>" class="btn btn-light py-3 px-5">Xem các hạng phòng</a>
             </div>
         </div>
     </div>

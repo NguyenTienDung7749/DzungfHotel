@@ -56,9 +56,9 @@ $carryFilters = array_filter([
 
 $bookingQuery = http_build_query(array_merge(['room_id' => $roomId], $carryFilters));
 
-$page_title = 'DzungfHotel | Chi tiết phòng';
+$page_title = 'DzungfHotel | ' . (string) $room['room_name'];
 $active_page = 'room-details';
-$page_heading = 'Chi tiết phòng';
+$page_heading = (string) $room['room_name'];
 $page_eyebrow = (string) $room['room_type'];
 
 require_once __DIR__ . '/includes/header.php';
@@ -73,7 +73,7 @@ require_once __DIR__ . '/includes/header.php';
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
                         <div>
                             <h2 class="mb-2"><?= e((string) $room['room_name']) ?></h2>
-                            <p class="mb-0 text-muted"><?= e((string) $room['room_type']) ?> tại <?= e((string) $room['location']) ?></p>
+                            <p class="mb-0 text-muted"><?= e((string) $room['room_type']) ?> tại <?= e((string) $room['location']) ?> với không gian nghỉ ngơi thoải mái và riêng tư.</p>
                         </div>
                         <div class="mt-3 mt-md-0">
                             <span class="badge <?= e(room_badge_class((string) $room['status'])) ?> status-badge"><?= e(room_status_label((string) $room['status'])) ?></span>
@@ -85,21 +85,21 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="stat-box text-center h-100">
                                 <div class="icon-circle mx-auto mb-3"><i class="fa fa-user-friends"></i></div>
                                 <h5 class="mb-1"><?= e((string) $room['capacity']) ?> khách</h5>
-                                <p class="mb-0">Sức chứa tối đa</p>
+                                <p class="mb-0">Sức chứa phù hợp</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="stat-box text-center h-100">
                                 <div class="icon-circle mx-auto mb-3"><i class="fa fa-map-marker-alt"></i></div>
                                 <h5 class="mb-1"><?= e((string) $room['location']) ?></h5>
-                                <p class="mb-0">Địa điểm phòng</p>
+                                <p class="mb-0">Điểm đến lưu trú</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="stat-box text-center h-100">
                                 <div class="icon-circle mx-auto mb-3"><i class="fa fa-money-bill-wave"></i></div>
                                 <h5 class="mb-1"><?= e(format_currency((string) $room['price'])) ?></h5>
-                                <p class="mb-0">Giá mỗi đêm</p>
+                                <p class="mb-0">Giá tham khảo mỗi đêm</p>
                             </div>
                         </div>
                     </div>
@@ -107,15 +107,15 @@ require_once __DIR__ . '/includes/header.php';
             </div>
             <div class="col-lg-5">
                 <div class="room-sidebar-card mb-4">
-                    <h4 class="mb-4">Thông tin nhanh</h4>
+                    <h4 class="mb-4">Thông tin nổi bật</h4>
                     <ul class="list-check mb-4">
-                        <li><i class="fa fa-check-circle"></i>Loại phòng: <?= e((string) $room['room_type']) ?></li>
-                        <li><i class="fa fa-check-circle"></i>Sức chứa: <?= e((string) $room['capacity']) ?> khách</li>
+                        <li><i class="fa fa-check-circle"></i>Hạng phòng: <?= e((string) $room['room_type']) ?></li>
+                        <li><i class="fa fa-check-circle"></i>Phù hợp cho tối đa <?= e((string) $room['capacity']) ?> khách lưu trú</li>
                         <li><i class="fa fa-check-circle"></i>Giá tham khảo: <?= e(format_currency((string) $room['price'])) ?>/đêm</li>
-                        <li><i class="fa fa-check-circle"></i>Trạng thái hiện tại: <?= e(room_status_label((string) $room['status'])) ?></li>
+                        <li><i class="fa fa-check-circle"></i>Tình trạng hiện tại: <?= e(room_status_label((string) $room['status'])) ?></li>
                     </ul>
-                    <a href="<?= e(url('booking.php?' . $bookingQuery)) ?>" class="btn btn-primary w-100 py-3 mb-3">Đặt ngay</a>
-                    <a href="<?= e(url('rooms.php')) ?>" class="btn btn-outline-dark w-100 py-3">Quay lại danh sách phòng</a>
+                    <a href="<?= e(url('booking.php?' . $bookingQuery)) ?>" class="btn btn-primary w-100 py-3 mb-3">Chọn phòng này</a>
+                    <a href="<?= e(url('rooms.php')) ?>" class="btn btn-outline-dark w-100 py-3">Xem thêm hạng phòng</a>
                 </div>
                 <div class="summary-card">
                     <h5 class="mb-3">Tiện nghi nổi bật</h5>
@@ -126,7 +126,7 @@ require_once __DIR__ . '/includes/header.php';
                             <?php endforeach; ?>
                         </ul>
                     <?php else: ?>
-                        <p class="mb-0">Phòng được trang bị đầy đủ các tiện nghi cơ bản để mang lại trải nghiệm lưu trú thoải mái.</p>
+                        <p class="mb-0">Không gian phòng được chuẩn bị với những tiện nghi cơ bản để mang đến trải nghiệm lưu trú dễ chịu và thuận tiện.</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -138,8 +138,8 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container-xxl py-5 bg-soft">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Phòng liên quan</h6>
-                <h1 class="mb-5">Thêm lựa chọn khác cho <span class="text-primary text-uppercase">bạn</span></h1>
+                <h6 class="section-title text-center text-primary text-uppercase">Gợi ý thêm</h6>
+                <h1 class="mb-5">Thêm lựa chọn lưu trú cho <span class="text-primary text-uppercase">bạn</span></h1>
             </div>
             <div class="row g-4">
                 <?php foreach ($relatedRooms as $index => $item): ?>
@@ -157,8 +157,8 @@ require_once __DIR__ . '/includes/header.php';
                                     <small><i class="fa fa-map-marker-alt text-primary me-2"></i><?= e((string) $item['location']) ?></small>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="<?= e(url('room-details.php?id=' . (int) $item['id'])) ?>">Chi tiết</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e(url('booking.php?room_id=' . (int) $item['id'])) ?>">Đặt ngay</a>
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="<?= e(url('room-details.php?id=' . (int) $item['id'])) ?>">Xem chi tiết</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e(url('booking.php?room_id=' . (int) $item['id'])) ?>">Chọn phòng này</a>
                                 </div>
                             </div>
                         </div>

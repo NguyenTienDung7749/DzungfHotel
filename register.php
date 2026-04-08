@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insertStmt->bind_param('sss', $fullName, $email, $hashedPassword);
 
         if ($insertStmt->execute()) {
-            set_flash('success', 'Đăng ký thành công. Bạn hãy đăng nhập để tiếp tục.');
+            set_flash('success', 'Tài khoản đã được tạo thành công. Mời bạn đăng nhập để tiếp tục đặt phòng.');
             redirect('login.php');
         }
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $page_title = 'DzungfHotel | Đăng ký';
 $active_page = 'register';
 $page_heading = 'Đăng ký';
-$page_eyebrow = 'Tạo tài khoản';
+$page_eyebrow = 'Tài khoản thành viên';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -71,18 +71,18 @@ require_once __DIR__ . '/includes/header.php';
         <div class="row g-5 align-items-center justify-content-center">
             <div class="col-lg-5">
                 <div class="info-card">
-                    <h3 class="mb-4">Tạo tài khoản khách hàng</h3>
-                    <p class="mb-4">Sau khi đăng ký, bạn có thể đăng nhập để đặt phòng, xem xác nhận booking và kiểm tra lịch sử đặt phòng của riêng mình.</p>
+                    <h3 class="mb-4">Tạo tài khoản để đặt phòng thuận tiện hơn</h3>
+                    <p class="mb-4">Sau khi đăng ký, bạn có thể dễ dàng theo dõi yêu cầu đặt phòng, thông tin xác nhận lưu trú và những lần nghỉ tiếp theo tại DzungfHotel.</p>
                     <ul class="list-check mb-0">
                         <li><i class="fa fa-check-circle"></i>Đăng ký nhanh với họ tên, email và mật khẩu.</li>
-                        <li><i class="fa fa-check-circle"></i>Mật khẩu được lưu ở dạng băm an toàn.</li>
-                        <li><i class="fa fa-check-circle"></i>Sau khi đăng nhập, hệ thống sẽ chuyển bạn đến trang hồ sơ.</li>
+                        <li><i class="fa fa-check-circle"></i>Thuận tiện lưu lại thông tin tài khoản cho những lần lưu trú tiếp theo.</li>
+                        <li><i class="fa fa-check-circle"></i>Dễ dàng xem lại xác nhận đặt phòng và cập nhật cần thiết trong tài khoản cá nhân.</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="auth-card">
-                    <h3 class="mb-4">Đăng ký tài khoản mới</h3>
+                    <h3 class="mb-4">Thông tin đăng ký</h3>
 
                     <?php if ($errors): ?>
                         <div class="alert alert-danger">
@@ -118,7 +118,7 @@ require_once __DIR__ . '/includes/header.php';
                         </div>
                     </form>
 
-                    <p class="mb-0 mt-4 text-center">Đã có tài khoản? <a href="<?= e(url('login.php')) ?>">Đăng nhập tại đây</a>.</p>
+                    <p class="mb-0 mt-4 text-center">Đã có tài khoản? <a href="<?= e(url('login.php')) ?>">Đăng nhập ngay</a>.</p>
                 </div>
             </div>
         </div>

@@ -8,12 +8,12 @@ declare(strict_types=1);
                         <div class="bg-primary rounded p-4 h-100">
                             <a href="<?= e(url('index.php')) ?>"><h1 class="text-white text-uppercase mb-3">DzungfHotel</h1></a>
                             <p class="text-white mb-0">
-                                DzungfHotel mang đến trải nghiệm tìm phòng, xem chi tiết và đặt phòng trực tuyến nhanh chóng cho khách lưu trú tại miền Trung.
+                                DzungfHotel là điểm dừng chân mang phong cách hiện đại, thuận tiện để bạn khám phá các hạng phòng và lên kế hoạch lưu trú thật dễ dàng.
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
-                        <h6 class="section-title text-start text-primary text-uppercase mb-4">Thông tin liên hệ</h6>
+                        <h6 class="section-title text-start text-primary text-uppercase mb-4">Liên hệ nhanh</h6>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>22 Trần Phú, Đà Nẵng</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0905 123 456</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@dzungfhotel.com</p>
@@ -26,10 +26,12 @@ declare(strict_types=1);
                     <div class="col-lg-4 col-md-12">
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Điều hướng nhanh</h6>
                         <a class="btn btn-link" href="<?= e(url('index.php')) ?>">Trang chủ</a>
-                        <a class="btn btn-link" href="<?= e(url('rooms.php')) ?>">Danh sách phòng</a>
-                        <a class="btn btn-link" href="<?= e(url('booking.php')) ?>">Đặt phòng</a>
-                        <a class="btn btn-link" href="<?= e(url('profile.php')) ?>">Hồ sơ cá nhân</a>
+                        <a class="btn btn-link" href="<?= e(url('rooms.php')) ?>">Hạng phòng</a>
+                        <a class="btn btn-link" href="<?= e(url('rooms.php')) ?>">Đặt phòng</a>
                         <a class="btn btn-link" href="<?= e(url('contact.php')) ?>">Liên hệ</a>
+                        <?php if (is_logged_in()): ?>
+                            <a class="btn btn-link" href="<?= e(url('profile.php')) ?>">Tài khoản của tôi</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -37,13 +39,13 @@ declare(strict_types=1);
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="<?= e(url('index.php')) ?>">DzungfHotel</a>, hệ thống đặt phòng khách sạn trực tuyến.
+                            &copy; <a class="border-bottom" href="<?= e(url('index.php')) ?>">DzungfHotel</a>, lưu trú tiện nghi cho mọi chuyến đi.
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="<?= e(url('about.php')) ?>">Giới thiệu</a>
                                 <a href="<?= e(url('rooms.php')) ?>">Phòng</a>
-                                <a href="<?= e(url('booking.php')) ?>">Đặt phòng</a>
+                                <a href="<?= e(url('rooms.php')) ?>">Đặt phòng</a>
                                 <a href="<?= e(url('contact.php')) ?>">Liên hệ</a>
                             </div>
                         </div>

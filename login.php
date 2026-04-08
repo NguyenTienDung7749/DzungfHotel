@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $page_title = 'DzungfHotel | Đăng nhập';
 $active_page = 'login';
 $page_heading = 'Đăng nhập';
-$page_eyebrow = 'Tài khoản khách hàng';
+$page_eyebrow = 'Tài khoản thành viên';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -54,8 +54,8 @@ require_once __DIR__ . '/includes/header.php';
             <div class="col-lg-6 col-xl-5">
                 <div class="auth-card">
                     <div class="text-center mb-4">
-                        <h3 class="mb-2">Đăng nhập hệ thống</h3>
-                        <p class="text-muted mb-0">Nhập email và mật khẩu để tiếp tục quản lý booking của bạn.</p>
+                        <h3 class="mb-2">Đăng nhập tài khoản</h3>
+                        <p class="text-muted mb-0">Nhập email và mật khẩu để tiếp tục theo dõi đặt phòng và lịch lưu trú của bạn.</p>
                     </div>
 
                     <?php if ($errors): ?>
@@ -84,7 +84,7 @@ require_once __DIR__ . '/includes/header.php';
                         </div>
                     </form>
 
-                    <p class="mb-0 mt-4 text-center">Chưa có tài khoản? <a href="<?= e(url('register.php')) ?>">Đăng ký ngay</a>.</p>
+                    <p class="mb-0 mt-4 text-center">Chưa có tài khoản? <a href="<?= e(url('register.php')) ?>">Tạo tài khoản ngay</a>.</p>
                 </div>
             </div>
         </div>

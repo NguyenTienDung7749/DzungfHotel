@@ -15,8 +15,8 @@ $currentUser = current_user();
     <meta charset="utf-8">
     <title><?= e($pageTitle) ?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="DzungfHotel, đặt phòng khách sạn, khách sạn trực tuyến" name="keywords">
-    <meta content="DzungfHotel là nền tảng đặt phòng khách sạn trực tuyến bằng PHP và MySQL." name="description">
+    <meta content="DzungfHotel, khách sạn miền Trung, đặt phòng trực tuyến, nghỉ dưỡng tiện nghi" name="keywords">
+    <meta content="DzungfHotel mang đến trải nghiệm lưu trú tiện nghi, hiện đại và thuận tiện cho mọi chuyến đi tại miền Trung." name="description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@ $currentUser = current_user();
                                 <?php if ($currentUser): ?>
                                     Xin chào, <span class="text-dark fw-bold ms-1"><?= e($currentUser['full_name']) ?></span>
                                 <?php else: ?>
-                                    Nền tảng đặt phòng khách sạn trực tuyến
+                                    Không gian lưu trú tiện nghi tại miền Trung
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ $currentUser = current_user();
                                 <a href="<?= e(url('index.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['home'])) ?>">Trang chủ</a>
                                 <a href="<?= e(url('about.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['about'])) ?>">Giới thiệu</a>
                                 <a href="<?= e(url('rooms.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['rooms', 'room-details'])) ?>">Phòng</a>
-                                <a href="<?= e(url('booking.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['booking', 'booking-confirm'])) ?>">Đặt phòng</a>
+                                <a href="<?= e(url('rooms.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['booking', 'booking-confirm'])) ?>">Đặt phòng</a>
                                 <a href="<?= e(url('contact.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['contact'])) ?>">Liên hệ</a>
                                 <?php if (is_admin()): ?>
                                     <a href="<?= e(url('admin/bookings.php')) ?>" class="nav-item nav-link <?= e(is_active($activePage, ['admin-bookings'])) ?>">Quản lý booking</a>

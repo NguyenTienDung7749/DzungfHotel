@@ -35,10 +35,10 @@ while ($row = $bookingResult->fetch_assoc()) {
 }
 $bookingStmt->close();
 
-$page_title = 'DzungfHotel | Hồ sơ';
+$page_title = 'DzungfHotel | Tài khoản của tôi';
 $active_page = 'profile';
-$page_heading = 'Hồ sơ cá nhân';
-$page_eyebrow = 'Tài khoản của bạn';
+$page_heading = 'Tài khoản của tôi';
+$page_eyebrow = 'Thông tin lưu trú';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -54,11 +54,11 @@ require_once __DIR__ . '/includes/header.php';
                         <p class="text-muted mb-0"><?= e((string) $user['email']) ?></p>
                     </div>
                     <ul class="list-check mb-4">
-                        <li><i class="fa fa-check-circle"></i>Vai trò: <?= e((string) $user['role']) ?></li>
-                        <li><i class="fa fa-check-circle"></i>Ngày tạo: <?= e(format_datetime((string) $user['created_at'])) ?></li>
-                        <li><i class="fa fa-check-circle"></i>Số booking: <?= count($bookings) ?></li>
+                        <li><i class="fa fa-check-circle"></i>Loại tài khoản: <?= e((string) $user['role'] === 'admin' ? 'Quản trị viên' : 'Khách lưu trú') ?></li>
+                        <li><i class="fa fa-check-circle"></i>Thành viên từ: <?= e(format_datetime((string) $user['created_at'])) ?></li>
+                        <li><i class="fa fa-check-circle"></i>Lượt đặt phòng: <?= count($bookings) ?></li>
                     </ul>
-                    <a href="<?= e(url('booking.php')) ?>" class="btn btn-primary w-100 py-3 mb-3">Đặt phòng mới</a>
+                    <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary w-100 py-3 mb-3">Khám phá hạng phòng</a>
                     <a href="<?= e(url('rooms.php')) ?>" class="btn btn-outline-dark w-100 py-3">Xem danh sách phòng</a>
                 </div>
             </div>
@@ -68,9 +68,9 @@ require_once __DIR__ . '/includes/header.php';
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
                         <div>
                             <h3 class="mb-2">Lịch sử đặt phòng</h3>
-                            <p class="mb-0 text-muted">Theo dõi tất cả booking của tài khoản này với trạng thái và thanh toán rõ ràng.</p>
+                            <p class="mb-0 text-muted">Theo dõi các yêu cầu lưu trú, trạng thái xác nhận và thông tin thanh toán của từng lần đặt phòng.</p>
                         </div>
-                        <span class="badge bg-dark fs-6 px-3 py-2 mt-3 mt-md-0"><?= count($bookings) ?> booking</span>
+                        <span class="badge bg-dark fs-6 px-3 py-2 mt-3 mt-md-0"><?= count($bookings) ?> lượt đặt</span>
                     </div>
 
                     <?php if ($bookings): ?>
@@ -85,7 +85,7 @@ require_once __DIR__ . '/includes/header.php';
                                 <div class="booking-history-item">
                                     <div class="booking-history-header">
                                         <div>
-                                            <div class="booking-history-label">Mã booking #<?= e((string) $booking['id']) ?></div>
+                                            <div class="booking-history-label">Mã đặt phòng #<?= e((string) $booking['id']) ?></div>
                                             <h4 class="booking-history-title"><?= e((string) $booking['room_name']) ?></h4>
                                             <p class="booking-history-subtitle mb-0"><?= e((string) $booking['room_type']) ?> • <?= e((string) $booking['location']) ?></p>
                                         </div>
@@ -139,9 +139,9 @@ require_once __DIR__ . '/includes/header.php';
                     <?php else: ?>
                         <div class="empty-state">
                             <div class="icon-circle mx-auto mb-3"><i class="fa fa-calendar-times"></i></div>
-                            <h4 class="mb-3">Bạn chưa có booking nào</h4>
-                            <p class="mb-4">Hãy chọn một phòng phù hợp và tạo booking đầu tiên để hệ thống hiển thị lịch sử tại đây.</p>
-                            <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-3 px-5">Bắt đầu đặt phòng</a>
+                            <h4 class="mb-3">Bạn chưa có lượt đặt phòng nào</h4>
+                            <p class="mb-4">Hãy chọn một hạng phòng phù hợp để bắt đầu kế hoạch lưu trú đầu tiên cùng DzungfHotel.</p>
+                            <a href="<?= e(url('rooms.php')) ?>" class="btn btn-primary py-3 px-5">Khám phá hạng phòng</a>
                         </div>
                     <?php endif; ?>
                 </div>

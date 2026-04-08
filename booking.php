@@ -118,19 +118,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $db->commit();
-            set_flash('success', 'Đặt phòng thành công. Đây là trang xác nhận booking của bạn.');
+            set_flash('success', 'Yêu cầu đặt phòng đã được ghi nhận. Bạn có thể xem chi tiết ở trang xác nhận.');
             redirect('booking-confirm.php?id=' . $bookingId);
         } catch (Throwable $exception) {
             $db->rollback();
-            $errors[] = 'Không thể lưu booking. Vui lòng thử lại.';
+            $errors[] = 'Không thể ghi nhận yêu cầu đặt phòng. Vui lòng thử lại.';
         }
     }
 }
 
-$page_title = 'DzungfHotel | Đặt phòng';
+$page_title = 'DzungfHotel | Yêu cầu đặt phòng';
 $active_page = 'booking';
-$page_heading = 'Đặt phòng';
-$page_eyebrow = 'Thông tin đặt phòng';
+$page_heading = 'Yêu cầu đặt phòng';
+$page_eyebrow = 'Thông tin lưu trú';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -140,7 +140,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="row g-5">
             <div class="col-lg-7">
                 <div class="form-card">
-                    <h3 class="mb-4">Thông tin booking</h3>
+                    <h3 class="mb-4">Thông tin lưu trú</h3>
 
                     <?php if ($errors): ?>
                         <div class="alert alert-danger">
@@ -155,9 +155,9 @@ require_once __DIR__ . '/includes/header.php';
                     <form method="post" action="<?= e(url('booking.php')) ?>">
                         <div class="row g-3">
                             <div class="col-12">
-                                <label for="room_id" class="form-label fw-semibold">Chọn phòng</label>
+                                <label for="room_id" class="form-label fw-semibold">Chọn hạng phòng</label>
                                 <select class="form-select" id="room_id" name="room_id" required>
-                                    <option value="">-- Chọn phòng muốn đặt --</option>
+                                    <option value="">-- Chọn hạng phòng bạn muốn lưu trú --</option>
                                     <?php foreach ($availableRooms as $room): ?>
                                         <option value="<?= e((string) $room['id']) ?>" <?= (int) $room['id'] === $selectedRoomId ? 'selected' : '' ?>>
                                             <?= e((string) $room['room_name']) ?> - <?= e(format_currency((string) $room['price'])) ?>/đêm
@@ -174,15 +174,15 @@ require_once __DIR__ . '/includes/header.php';
                                 <input type="date" class="form-control" id="check_out" name="check_out" value="<?= e($checkOutValue) ?>" min="<?= e(date('Y-m-d', strtotime('+1 day'))) ?>" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="guests" class="form-label fw-semibold">Số khách</label>
+                                <label for="guests" class="form-label fw-semibold">Số khách lưu trú</label>
                                 <input type="number" class="form-control" id="guests" name="guests" min="1" max="10" value="<?= e($guestsValue === '' ? '1' : $guestsValue) ?>" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">Khách đặt</label>
+                                <label class="form-label fw-semibold">Người đặt phòng</label>
                                 <input type="text" class="form-control" value="<?= e((string) $currentUser['full_name']) ?> - <?= e((string) $currentUser['email']) ?>" readonly>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Xác nhận đặt phòng</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Gửi yêu cầu đặt phòng</button>
                             </div>
                         </div>
                     </form>
@@ -195,27 +195,27 @@ require_once __DIR__ . '/includes/header.php';
                         <img class="img-fluid rounded room-card-image mb-4" src="<?= e(asset((string) $selectedRoom['image'])) ?>" alt="<?= e((string) $selectedRoom['room_name']) ?>">
                         <h4 class="mb-3"><?= e((string) $selectedRoom['room_name']) ?></h4>
                         <ul class="list-check mb-4">
-                            <li><i class="fa fa-check-circle"></i>Loại phòng: <?= e((string) $selectedRoom['room_type']) ?></li>
-                            <li><i class="fa fa-check-circle"></i>Địa điểm: <?= e((string) $selectedRoom['location']) ?></li>
-                            <li><i class="fa fa-check-circle"></i>Sức chứa tối đa: <?= e((string) $selectedRoom['capacity']) ?> khách</li>
-                            <li><i class="fa fa-check-circle"></i>Giá mỗi đêm: <?= e(format_currency((string) $selectedRoom['price'])) ?></li>
-                            <li><i class="fa fa-check-circle"></i>Thanh toán mặc định: Chờ thanh toán</li>
+                            <li><i class="fa fa-check-circle"></i>Hạng phòng: <?= e((string) $selectedRoom['room_type']) ?></li>
+                            <li><i class="fa fa-check-circle"></i>Điểm đến: <?= e((string) $selectedRoom['location']) ?></li>
+                            <li><i class="fa fa-check-circle"></i>Phù hợp tối đa <?= e((string) $selectedRoom['capacity']) ?> khách</li>
+                            <li><i class="fa fa-check-circle"></i>Giá tham khảo: <?= e(format_currency((string) $selectedRoom['price'])) ?>/đêm</li>
+                            <li><i class="fa fa-check-circle"></i>Trạng thái xác nhận sẽ được cập nhật sau khi tiếp nhận yêu cầu</li>
                         </ul>
                         <p class="mb-0"><?= e((string) $selectedRoom['description']) ?></p>
                     </div>
                 <?php else: ?>
                     <div class="summary-card mb-4">
-                        <h4 class="mb-3">Chọn phòng trước khi đặt</h4>
-                        <p class="mb-0">Bạn có thể chọn trực tiếp từ danh sách ở form bên trái hoặc quay lại trang Phòng để xem thông tin chi tiết trước khi booking.</p>
+                        <h4 class="mb-3">Chọn hạng phòng trước khi gửi yêu cầu</h4>
+                        <p class="mb-0">Bạn có thể chọn trực tiếp từ danh sách ở biểu mẫu bên trái hoặc quay lại trang Phòng để xem chi tiết từng hạng phòng trước khi đặt.</p>
                     </div>
                 <?php endif; ?>
 
                 <div class="summary-card">
-                    <h5 class="mb-3">Thông tin cần biết</h5>
+                    <h5 class="mb-3">Lưu ý khi đặt phòng</h5>
                     <ul class="list-check mb-0">
-                        <li><i class="fa fa-check-circle"></i>Booking mới sẽ mặc định ở trạng thái chờ xác nhận.</li>
-                        <li><i class="fa fa-check-circle"></i>Tổng tiền được tính theo số đêm nhân với giá phòng.</li>
-                        <li><i class="fa fa-check-circle"></i>Sau khi đặt thành công, hệ thống chuyển đến trang xác nhận booking.</li>
+                        <li><i class="fa fa-check-circle"></i>Yêu cầu mới sẽ được tiếp nhận và phản hồi xác nhận trong thời gian sớm nhất.</li>
+                        <li><i class="fa fa-check-circle"></i>Chi phí lưu trú được tính theo số đêm nhân với giá phòng đã chọn.</li>
+                        <li><i class="fa fa-check-circle"></i>Sau khi gửi yêu cầu thành công, bạn sẽ được chuyển tới trang xác nhận đặt phòng.</li>
                     </ul>
                 </div>
             </div>

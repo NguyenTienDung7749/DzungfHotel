@@ -49,10 +49,10 @@ $carryFilters = array_filter([
 
 $filterQuery = http_build_query($carryFilters);
 
-$page_title = 'DzungfHotel | Danh sách phòng';
+$page_title = 'DzungfHotel | Hạng phòng';
 $active_page = 'rooms';
-$page_heading = 'Danh sách phòng';
-$page_eyebrow = 'Danh mục phòng';
+$page_heading = 'Hạng phòng';
+$page_eyebrow = 'Lựa chọn lưu trú';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -92,11 +92,11 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4">
             <div class="page-intro">
-                <h2 class="mb-2">Phòng phù hợp cho chuyến đi của bạn</h2>
-                <p class="mb-0">Lọc theo địa điểm và số khách để tìm phòng phù hợp. Khi chuyển sang trang chi tiết, hệ thống sẽ giữ lại thông tin tìm kiếm để đặt phòng nhanh hơn.</p>
+                <h2 class="mb-2">Tìm hạng phòng phù hợp cho chuyến đi của bạn</h2>
+                <p class="mb-0">Lọc theo điểm đến, thời gian lưu trú và số lượng khách để chọn không gian nghỉ ngơi phù hợp. Thông tin bạn vừa tìm kiếm sẽ được giữ lại khi xem chi tiết để thao tác thuận tiện hơn.</p>
             </div>
             <div class="text-lg-end mt-3 mt-lg-0">
-                <span class="badge bg-dark fs-6 px-3 py-2"><?= count($rooms) ?> phòng</span>
+                <span class="badge bg-dark fs-6 px-3 py-2"><?= count($rooms) ?> lựa chọn</span>
             </div>
         </div>
 
@@ -129,7 +129,7 @@ require_once __DIR__ . '/includes/header.php';
                                 <p class="text-body mb-3"><?= e($shortDescription) ?></p>
                                 <div class="d-flex justify-content-between">
                                     <a class="btn btn-sm btn-primary rounded py-2 px-4" href="<?= e($detailUrl) ?>">Xem chi tiết</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e($bookingUrl) ?>">Đặt ngay</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= e($bookingUrl) ?>">Chọn phòng này</a>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +139,8 @@ require_once __DIR__ . '/includes/header.php';
         <?php else: ?>
             <div class="empty-state">
                 <div class="icon-circle mx-auto mb-3"><i class="fa fa-search"></i></div>
-                <h4 class="mb-3">Không tìm thấy phòng phù hợp</h4>
-                <p class="mb-0">Bạn hãy đổi địa điểm hoặc giảm số khách để xem thêm lựa chọn.</p>
+                <h4 class="mb-3">Chưa có phòng phù hợp với tìm kiếm của bạn</h4>
+                <p class="mb-0">Bạn hãy thử thay đổi điểm đến, ngày lưu trú hoặc số khách để xem thêm lựa chọn khác.</p>
             </div>
         <?php endif; ?>
     </div>
